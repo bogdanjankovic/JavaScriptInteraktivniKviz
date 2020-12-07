@@ -1,0 +1,36 @@
+/* *{
+	margin:0px;
+	padding:0px;
+}
+.container{
+	padding:5%;
+}
+#window{display:flex;}
+#main{
+	width:80%;
+}
+#main h4{text-align: center;}
+#side{
+	width:20%;
+	border-left: 0.5vw dashed slategrey;
+	border-bottom: 0.5vw dashed slategrey;
+	padding:2%;
+	height:100vw;
+}
+.sideButtons{
+	padding:2%;
+	
+}
+
+
+.buttonUsed{
+	background-color: gray;
+}
+.buttonEnable{
+	background-color:springgreen;
+}
+
+
+#questions{
+	
+} */
