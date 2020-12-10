@@ -34,13 +34,10 @@
 #questions{
 	
 } */
-.gameOver{
+/* .gameOver{
 	border: 1px solid springgreen;
 	display:flex;
 	flex-wrap: wrap;
-	background-image: url("../img/gameOver.jpg");
-	background-repeat: no-repeat;
-	background-position: bottom;
 	width:100%;
 	height:40vw;
 	padding:2vw;
@@ -52,12 +49,40 @@
 #pocniPonovo{
 	
 }
-.gameOver input{
-	height:5vw;
-	width:20%;
+ */
+.gameOver{
+	height:30vw;
+	margin:0 auto;
+	display: flex;
+	flex:center;
+	flex-wrap: wrap;
+}
+ .dugmici{
+	width:10vw;
 	margin: 20vw 10vw;
-	border-radius: 1vw 4vw;
+}
+.drzacDugmica{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+.gameOver input{
+	height:10vh;
+	width:30vw;
+	margin: 20vw 10vw;
 	background-color: green;
 	color:wheat;
 	
+}
+#answers{
+	
+}
+#questions,#answers,#side{
+	text-align: center;
+}
+#questions h4{
+	font-size: 2.5vw;
+}
+#answers input,#side input{
+	font-size: 1.75vw ;
 }
