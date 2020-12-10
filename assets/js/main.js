@@ -182,7 +182,7 @@ function gameOver(){
     var noviProzor=`<div class="gameOver bg-dark">
     <div class='col-md-12'>
                 <header><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
-                <div class="jumbotron jumbotron-fluid">
+                <div class="jumbotron ">
   <div class="container">
     <h1 class="display-3">Unfortunately, you lost!</h1>
     <p class="lead">Oh well, better luck next time... Your score was: </p>
@@ -190,7 +190,7 @@ function gameOver(){
 </div>
 	</div>
     <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="High Score" onclick="highScore();"></div>
-    <footer><p></p></footer>
+    <footer></footer>
     </div>`
     document.getElementById("container").innerHTML=noviProzor;
 }
@@ -198,3 +198,26 @@ function gameOver(){
 function newGame(){
     window.location.reload();
 }
+
+//footer
+function footer(){
+    var footer=document.getElementById("footer");
+var ispisFooter=`<ul class="nav">`;
+var nizIkona=["fa fa-linkedin","fa fa-github","fa fa-sitemap"];
+var nizLinkova=["","",""]
+var i=0;
+while (i<nizIkona.length){
+    ispisFooter+=
+    `
+        <li class="nav-item">
+        <a class="nav-link active" target="_blank" href="${nizLinkova[i]}"><i class="${nizIkona[i]}" aria-hidden="true"></i></a>
+        </li>`
+        i++;
+    
+    }
+    ispisFooter+=`</ul><p>Bogdan Jankovic 83/19</p>`
+    footer.innerHTML=ispisFooter;
+}
+footer();
+
+

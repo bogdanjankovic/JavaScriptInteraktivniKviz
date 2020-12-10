@@ -50,6 +50,16 @@
 	
 }
  */
+ .body{
+	position: relative;
+ }
+ .container{
+	 max-height: 300vw ;
+	 min-height: 100vh
+ }
+ #window{
+	max-height: 300vw ;
+ }
 .gameOver{
 	height:30vw;
 	margin:0 auto;
@@ -74,6 +84,9 @@
 	color:wheat;
 	
 }
+#completedRounds{
+	max-height: 180vw;
+}
 #answers{
 	
 }
@@ -93,4 +106,15 @@
 #side{
 	display:flex;
 	justify-content: center;
+}
+#footer{
+	min-height:4vw;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	padding:2%;
+}
+#footer i,#footer p{
+	font-size: 3vh;
+	color:wheat;
 }
