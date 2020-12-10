@@ -143,7 +143,7 @@ function proveraTacnosti(clicked){
             progresBar();
             let crveniBar=document.getElementById("progress");
             crveniBar.classList.add('bg-danger');
-            return gameOver();
+            return setTimeout(function(){  gameOver(); }, 500);
         }
     }
     
@@ -169,4 +169,36 @@ function polaPola(){
 
 }
 
-
+//gameOver funckionalnost (position relative div se otvara koji ima dva dugmeta i mozda neku sliku, jedno dugme je try again, drugo je enter highscore(otvara ispod neki pre toga hidden div sa formom))
+function gameOver(){
+    var noviProzor=`<div class="gameOver">
+    <input id="pocniPonovo" class="btn  btn-outline-success m-2 " type="button" value="New Game" onclick="newGame();">
+    <input id="rangListaUpis" class="btn btn-secondary btn-outline-primary m-2 " type="button" value="High Score" onclick="highScore();">
+    </div>`
+    document.getElementById("container").innerHTML=noviProzor;
+}
+// function newGame() da vrati sve sto je gameOver obrisao pre svega
+function newGame(){
+    var ispisSadrzaja=`<section id="window" class="d-flex flex-nowrap">
+    <div id="main" class="col-md-8 h-100">
+        <div id="triviaBox">
+            <div id="questions" class="p-4 col-md-12"></div>
+            <div id="answers" class="col-md-12"></div>
+            <div class="progress">
+                <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+              </div>
+            <div class="col-md-12" id="completedRounds"></div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <div id="side" class="col-md-4 p-4 m-4">
+        <div class="col-md-4 sideButtons"><input id="polaPola" class="btn btn-secondary m-2 p-2 " type="button" value="50/50" onclick="polaPola();"></div>
+        <div class="col-md-4 sideButtons"><input id="zameniPitanje" class="btn btn-secondary m-2 p-2" type="button" value="Swap Question" onclick="zameniPitanje();"></div>
+        <div class="col-md-4 sideButtons"><input id="sledece" class="btn btn-secondary m-2 p-2" type="button" value="Next Question" onclick="sledecePitanje();"></div>
+        <div id="authorInfo"><a href="oAutoru.html">About the Author</a></div>
+    </div>
+    </section>`
+    document.getElementById("container").innerHTML=ispisSadrzaja;
+    ispisPitanja();
+    kreiranjeOdgovora();
+}

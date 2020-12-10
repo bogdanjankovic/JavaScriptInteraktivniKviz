@@ -34,3 +34,30 @@
 #questions{
 	
 } */
+.gameOver{
+	border: 1px solid springgreen;
+	display:flex;
+	flex-wrap: wrap;
+	background-image: url("../img/gameOver.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	width:100%;
+	height:40vw;
+	padding:2vw;
+	justify-content: bottom;
+	justify-content: space-evenly;
+	padding-top: 20vw;
+	
+}
+#pocniPonovo{
+	
+}
+.gameOver input{
+	height:5vw;
+	width:20%;
+	margin: 20vw 10vw;
+	border-radius: 1vw 4vw;
+	background-color: green;
+	color:wheat;
+	
+}
