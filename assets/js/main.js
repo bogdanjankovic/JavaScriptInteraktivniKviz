@@ -216,7 +216,7 @@ while (i<nizIkona.length){
         i++;
     
     }
-    ispisFooter+=`</ul><p>Bogdan Jankovic 83/19</p>`
+    ispisFooter+=`<li><p>Bogdan Jankovic 83/19</p></li></ul>`
     footer.innerHTML=ispisFooter;
 }
 footer();

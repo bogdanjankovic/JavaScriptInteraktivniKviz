@@ -51,12 +51,16 @@
 }
  */
  
- .text-responsive,#answers input[type="button"] {
+  .text-responsive,#answers input[type="button"] {
 	font-size: calc(100% + 0.5vw + 0.5vh);
   }
-  #helpButtons input[type="button"], #footer p, #footer li{
+  #helpButtons input[type="button"]{
+	font-size: calc(100% + 0.07vw + 0.07vh);
+}
+
+ #footer p, #footer li{
 	font-size: calc(100% + 0.05vw + 0.0.5vh);
-  }
+  } 
  .body{
 	position: relative;
  }
@@ -113,15 +117,14 @@
 #helpButtons{
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
+	max-height: 300vw;
 }
-#side{
-	display:flex;
-	justify-content: center;
-}
+
 #footer{
-	max-height:10vw;
 	width: 100%;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-evenly;
 	
 }
