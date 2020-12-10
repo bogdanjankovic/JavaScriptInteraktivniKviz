@@ -59,7 +59,7 @@
 }
 
  #footer p, #footer li{
-	font-size: calc(100% + 0.05vw + 0.0.5vh);
+	font-size: calc(100% + 0.01vw + 0.01vh);
   } 
  .body{
 	position: relative;
@@ -100,7 +100,7 @@
 	
 }
 #completedRounds{
-	max-height: 180vw;
+	min-height: 180vw;
 }
 #answers{
 	

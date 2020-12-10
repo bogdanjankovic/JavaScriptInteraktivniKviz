@@ -84,7 +84,7 @@ function uspehTreker(){
     var trekerUspeha=document.getElementById("completedRounds");
      //beleska+=`<span class="${bedzevi[brojRundi-1]}">Congratulations! You've earned a master of ${kategorija[brojRundi-1]} badge!</span>`;
      beleska+=`
-        <div class="col-md-3 mx-4 media alert alert-${boja[brojRundi-1]}">
+        <div class="col-md-3 mx-2 media alert alert-${boja[brojRundi-1]}">
             <i class="${bedzevi[brojRundi-1]}" aria-hidden="true"></i>
             <div class="m-2 media-body">
             <h5 class="mt-0 "> ${kategorija[brojRundi-1]}</h5>
@@ -216,7 +216,7 @@ while (i<nizIkona.length){
         i++;
     
     }
-    ispisFooter+=`<li><p>Bogdan Jankovic 83/19</p></li></ul>`
+    ispisFooter+=`<li class="nav-item"><p>Bogdan Jankovic 83/19</p></li></ul>`
     footer.innerHTML=ispisFooter;
 }
 footer();
