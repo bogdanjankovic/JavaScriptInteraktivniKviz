@@ -184,7 +184,7 @@ function gameOver(){
                 <header><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
                 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Unfortunately, you lost!</h1>
+    <h1 class="display-3">Unfortunately, you lost!</h1>
     <p class="lead">Oh well, better luck next time... Your score was: </p>
   </div>
 </div>

@@ -81,8 +81,16 @@
 	text-align: center;
 }
 #questions h4{
-	font-size: 2.5vw;
+	font-size: 3vw;
 }
 #answers input,#side input{
-	font-size: 1.75vw ;
+	font-size: 2.5vw ;
+}
+#helpButtons{
+	display: flex;
+	justify-content: center;
+}
+#side{
+	display:flex;
+	justify-content: center;
 }
