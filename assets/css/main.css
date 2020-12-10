@@ -51,8 +51,12 @@
 }
  */
  
-  .text-responsive,#answers input[type="button"] {
+  .text-responsive{
 	font-size: calc(100% + 0.5vw + 0.5vh);
+  }
+  #answers input[type="button"] {
+	font-size: calc(100% + 0.3vw + 0.3vh);
+	white-space: normal;
   }
   #helpButtons input[type="button"]{
 	font-size: calc(100% + 0.07vw + 0.07vh);
