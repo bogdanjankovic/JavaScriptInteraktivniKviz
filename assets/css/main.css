@@ -125,10 +125,13 @@
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	
 }
 #footer i,#footer p{
 	color:wheat;
 	padding:1vw;
+}
+.container h1 .display-3{
+	font-size:2.34375rem;
 }
