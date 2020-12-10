@@ -81,10 +81,10 @@
 	text-align: center;
 }
 #questions h4{
-	font-size: 3vw;
+	font-size: 3vh;
 }
 #answers input,#side input{
-	font-size: 2.5vw ;
+	font-size: 2.5vh ;
 }
 #helpButtons{
 	display: flex;
