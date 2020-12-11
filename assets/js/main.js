@@ -247,7 +247,7 @@ footer();
      var polje=document.getElementById("nickname");
     var regExNickname=/[a-zA-Z]{3,32}/gi;
     if(!regExNickname.test(vrednost)){
-            polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please enter atleast 3 characters that aren't digits, you can also use dots and underscores to further customize your nick!</span>";
+            polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please enter atleast 3 non-digit characters :)</span>";
             var disableSelection =document.getElementById("submit")
             disableSelection.setAttribute("disabled","true");
             polje.classList.add("alert","alert-danger")

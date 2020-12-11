@@ -7,7 +7,6 @@
     height: 100%; /* Needed for container's min-height  */  
 }
 
-
   #answers input[type="button"] {
 	font-size: calc(100% + 0.3vw + 0.3vh);
 	white-space: normal;
@@ -20,11 +19,7 @@
  #footer p, #footer li{
 	font-size: calc(100% + 0.01vw + 0.01vh);
   } 
- #container{
-	 min-height:100%;
-	 margin-bottom: -40px; /* Put negative height of the footer here */
-    padding-bottom: 40px; /* Put height of the footer here. Needed for higher than screen height pages*/
- }
+ 
  .container{
 	 max-height: 300vh ;
 	 min-height: 100vh
@@ -87,13 +82,15 @@
 	flex-wrap: wrap;
 	max-height: 300vw;
 }
-
+.form-group p{
+	font-size: calc(100% + 0.001vw + 0.005vh);
+}
 #footer{
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	
+	bottom: 0;
 }
 #footer i,#footer p{
 	padding:1vw;
