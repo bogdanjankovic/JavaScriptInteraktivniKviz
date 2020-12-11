@@ -108,7 +108,8 @@ table{
 	margin:0 auto;
 }
 #ispisHS{
-	min-height: 20vw;
+	min-height: 40vw;
+	max-height: 200vw;
 	display: flex;
 	justify-content: center;
 }
