@@ -65,9 +65,7 @@
  #footer p, #footer li{
 	font-size: calc(100% + 0.01vw + 0.01vh);
   } 
- .body{
-	position: relative;
- }
+ 
  .container{
 	 max-height: 300vh ;
 	 min-height: 100vh
@@ -79,7 +77,6 @@
 	max-height: 300vw ;
  }
 .gameOver{
-	height:30vw;
 	margin:0 auto;
 	display: flex;
 	flex:center;
@@ -94,9 +91,10 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	min-height:10vw;
 }
 .gameOver input{
-	height:10vh;
+	
 	width:30vw;
 	margin: 20vw 10vw;
 	background-color: green;
@@ -138,4 +136,18 @@
 }
 .container h1 .display-3{
 	font-size:2.34375rem;
+}
+form{
+	padding:2vw;
+	margin-top:2vw;
+	width:50%;
+	min-height: 10vw;
+}
+ table td{
+	text-align: center;
+}
+#ispisHS{
+	min-height: 20vw;
+	display: flex;
+	justify-content: center;
 }

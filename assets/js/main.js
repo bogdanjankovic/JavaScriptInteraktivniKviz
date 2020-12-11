@@ -194,6 +194,7 @@ function gameOver(){
 	</div>
     <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="High Score" onclick="highScore();"></div>
     </div>
+    <div id="ispisHS"></div>
     `
     document.getElementById("container").innerHTML=noviProzor;
 }
@@ -242,4 +243,71 @@ function shuffle(array) {
     }
   
     return array;
+  }
+
+  var imeKorisnika='';
+  var zapis;
+  // HighScore
+  function highScore(){
+      let ispis=``;
+        ispis+=`<form onsubmit="leaderBoard()">
+        <div class="form-group">
+          <label for="">Your Nickname: </label>
+          <input type="text" class="form-control" id="nickname">
+          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control" id="submit">
+        </div>
+    </form>`
+        var ispisKrajnji=document.getElementById("ispisHS");
+        ispisKrajnji.innerHTML=ispis;
+        
+  }
+  
+  // regEx
+  var regExNickname=/^[a-zA-Z0-9-._]{2,64}$/g;
+  function leaderBoard(){
+      console.log(zapis.value);
+      imeKorisnika=zapis.value;
+      var ispisNovi=document.getElementById("container");
+    var nizImena=["Bogdan","Dragana","Jelena","Goran","Tara","Stefan","Mila"];
+    var nizPoena=["450","220","210","150","140","110","90"];
+    var x=0;
+    var brojac=0;
+    var z=nizImena.length;
+      for( ;x<nizImena.length;x++){
+            if(score<parseInt(nizPoena[x])){
+                console.log(x);
+                console.log(score);
+                continue;
+            }
+            else{
+                nizImena.splice(x,0,imeKorisnika);
+                nizPoena.splice(x,0,score);
+                brojac++;
+                break;
+            }
+            
+          }
+        if(!brojac){
+            nizImena.push(imeKorisnika);
+            nizPoena.push(score);
+        }
+
+      var leaderBoard=`<div class="gameOver bg-dark">
+      <div class='col-md-12'>
+                  <header id="highScoreLogo"><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
+    </div>
+      </div>
+      <table class="table bg-primary"><tbody>
+      `;
+      for( var y=0;y<nizImena.length;y++){
+          
+       leaderBoard+=`
+       
+       <tr><td>${y+1}</td><td>${nizImena[y]}</td><td>${nizPoena[y]}</td></tr>
+       `
+      }
+      leaderBoard+=`</tbody></table>
+      <div class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Contact the Author" onclick='';"></div>
+      </div>`
+      ispisNovi.innerHTML=leaderBoard;
   }
