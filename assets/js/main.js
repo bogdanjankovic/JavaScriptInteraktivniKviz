@@ -247,16 +247,19 @@ footer();
      var polje=document.getElementById("nickname");
     var regExNickname=/[a-zA-Z]{3,32}/gi;
     if(!regExNickname.test(vrednost)){
-            polje.nextElementSibling.innerHTML="Please enter atleast 3 characters, you can also use dots, underscores, but no digits please!";
+            polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please enter atleast 3 characters that aren't digits, you can also use dots and underscores to further customize your nick!</span>";
             var disableSelection = function(){
                 $("#elementId").prop("disabled", true);    
             };
+            polje.classList.add("alert","alert-danger")
   }
     else{
-        polje.nextElementSibling.innerHTML="";
+        polje.nextElementSibling.innerHTML="<span class='text text-success'>Looking good!</span>";
         var enableSelection = function(){
             $("#elementId").prop("disabled", false);
         };
+        polje.classList.remove("alert","alert-danger")
+        polje.classList.add("alert","alert-success")
     }
  }
   var cestitka='';
