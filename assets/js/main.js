@@ -235,7 +235,7 @@ footer();
         ispis+=`<form onsubmit="leaderBoard()">
         <div class="form-group">
           <label for="">Your Nickname: </label>
-          <input type="text" onfocus='regEx()' class="form-control" id="nickname"><p></p>
+          <input type="text" class="form-control" onBlur='regEx(this.value)' id="nickname"><p></p>
           <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control btn btn-primary" id="submit">
         </div>
     </form>`
@@ -243,16 +243,20 @@ footer();
         ispisKrajnji.innerHTML=ispis;
   }
   // regEx
- function regEx(){
-    var polje=document.getElementById("nickname");
-    var regExNickname=/[a-zA-Z][a-zA-Z0-9-_]{3,32}/gi;
-    if(!regExNickname.test(polje.value)){
-            polje.nextElementSibling.innerHTML="Please enter atleast two characters, you can also use dots, underscores, digits, whatever you like!";
-            document.getElementById("submit").setAttribute("disabled",true);
+ function regEx(vrednost){
+     var polje=document.getElementById("nickname");
+    var regExNickname=/[a-zA-Z]{3,32}/gi;
+    if(!regExNickname.test(vrednost)){
+            polje.nextElementSibling.innerHTML="Please enter atleast 3 characters, you can also use dots, underscores, but no digits please!";
+            var disableSelection = function(){
+                $("#elementId").prop("disabled", true);    
+            };
   }
-    else if(regExNickname.test(polje.value)){
+    else{
         polje.nextElementSibling.innerHTML="";
-        submitBtn.disabled=false;
+        var enableSelection = function(){
+            $("#elementId").prop("disabled", false);
+        };
     }
  }
   var cestitka='';
