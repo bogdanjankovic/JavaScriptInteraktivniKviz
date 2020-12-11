@@ -64,17 +64,8 @@
 #completedRounds{
 	min-height: 20vw;
 }
-#answers{
-	
-}
 #questions,#answers,#side{
 	text-align: center;
-}
-#questions h4{
-	
-}
-#answers input,#side input{
-	
 }
 #helpButtons{
 	display: flex;
