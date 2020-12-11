@@ -1,3 +1,5 @@
+
+
 // Implementirati izbor modova!
 
 // Funkcija za ispisivanje pitanja
@@ -47,11 +49,7 @@ function kreiranjeOdgovora(){
 kreiranjeOdgovora();
 // funkcija zameniPitanje preskace postojece pitanje, i otvara naredno, moze se upotrebiti jednom po rundi
 function zameniPitanje(){
-    if(swap){
-        console.log("Can't swap more than once per round!");
-        alert("Can't replace questions more than once per round!");
-    }
-    else{
+    if(!swap){
         moguciOdgovori++;
         zbirTacnih+=10;
         progresBar()
@@ -61,7 +59,6 @@ function zameniPitanje(){
         let nevazeceDugme=document.getElementById("zameniPitanje");
         nevazeceDugme.classList.add("btn","btn-warning");
     }
-    
 }
 
 //test funkcija sledece pitanje dok se ne implementiraju odgovori
@@ -95,6 +92,9 @@ function uspehTreker(){
 }
 function novaRunda(){
     if(!brojPitanja){
+            if(brojRundi==kategorija.length){
+                pobeda();
+            }
             console.log("Uslo je u novaRunda funkciju");
             var vazeceDugme = document.getElementsByClassName('btn-warning');
             while (vazeceDugme.length > 0) {
@@ -172,9 +172,6 @@ function polaPola(){
     let nevazeceDugme=document.getElementById("polaPola");
     nevazeceDugme.classList.add("btn","btn-warning");
     }
-    else{
-        alert("Can't use 50/50 more than once per round!");
-    }
     polapola++;
 
 }
@@ -187,12 +184,12 @@ function gameOver(){
                 <header><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
                 <div class="jumbotron ">
   <div class="container">
-    <h1 class="display-5">Unfortunately, you lost!</h1>
+    <h1>Unfortunately, you lost!</h1>
     <p class="lead">Oh well, better luck next time... Your score was: ${score} </p>
-  </div>
+    </div>
 </div>
 	</div>
-    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="High Score" onclick="highScore();"></div>
+    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Try again" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="Apply for High Score" onclick="highScore();"></div>
     </div>
     <div id="ispisHS"></div>
     `
@@ -219,31 +216,10 @@ while (i<nizIkona.length){
         i++;
     
     }
-    ispisFooter+=`<li class="nav-item"><p>Bogdan Jankovic 83/19</p></li></ul>`
+    ispisFooter+=`</ul><p>Bogdan Jankovic 83/19</p>`
     footer.innerHTML=ispisFooter;
 }
 footer();
-
-
-
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-  
-    return array;
-  }
 
   var imeKorisnika='';
   var zapis;
@@ -254,16 +230,20 @@ function shuffle(array) {
         <div class="form-group">
           <label for="">Your Nickname: </label>
           <input type="text" class="form-control" id="nickname">
-          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control" id="submit">
+          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control btn btn-primary" id="submit"><p></p>
         </div>
     </form>`
         var ispisKrajnji=document.getElementById("ispisHS");
         ispisKrajnji.innerHTML=ispis;
-        
+        var polje=document.querySelector("#nickname"); 
+        var regExNickname=/^[a-zA-Z0-9-._]{2,64}$/g;
+        if(!regExNickname.test(polje.value)){
+                polje.nextElementSibling.innerHTML="Please enter atleast two characters, you can also use dots, underscores, digits, whatever you like!";
+      }
   }
-  
   // regEx
-  var regExNickname=/^[a-zA-Z0-9-._]{2,64}$/g;
+ 
+  var cestitka='';
   function leaderBoard(){
       console.log(zapis.value);
       imeKorisnika=zapis.value;
@@ -280,6 +260,9 @@ function shuffle(array) {
                 continue;
             }
             else{
+                if(score>parseInt(nizPoena[0])){
+                    cestitka="Congratulations, you have set a new High Score, amazing! ";
+                }
                 nizImena.splice(x,0,imeKorisnika);
                 nizPoena.splice(x,0,score);
                 brojac++;
@@ -291,13 +274,13 @@ function shuffle(array) {
             nizImena.push(imeKorisnika);
             nizPoena.push(score);
         }
-
+// RangLista 
       var leaderBoard=`<div class="gameOver bg-dark">
       <div class='col-md-12'>
                   <header id="highScoreLogo"><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
     </div>
       </div>
-      <table class="table bg-primary"><tbody>
+      <table class="table col-md-6 bg-primary"><tbody>
       `;
       for( var y=0;y<nizImena.length;y++){
           
@@ -307,7 +290,21 @@ function shuffle(array) {
        `
       }
       leaderBoard+=`</tbody></table>
-      <div class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Contact the Author" onclick='';"></div>
+      <div id="gameOverDugmad" class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Contact the Author" onclick='';"></div>
       </div>`
       ispisNovi.innerHTML=leaderBoard;
+      //primena jQuery-a za bojenje parnih i neparnih elemenata redova tabela
+      $(document).ready(function(){
+        $("tr:odd").css("background-color", "indigo");
+      });
+      $(document).ready(function(){
+      $("tr:even").css("background-color", "primary");
+      });
   }
+  //popover
+  $(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'bottom',
+        trigger : 'hover'
+    });
+});
