@@ -205,7 +205,7 @@ function gameOver(){
 	</div>
     <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Try again" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="Apply for High Score" onclick="highScore();"></div>
     </div>
-    <div id="ispisHS"></div>
+    <div id="ispisHS" class="row"></div>
     `
     document.getElementById("container").innerHTML=noviProzor;
 }
@@ -218,8 +218,8 @@ function newGame(){
 function footer(){
     var footer=document.getElementById("footer");
 var ispisFooter=`<ul class="nav">`;
-var nizIkona=["fa fa-linkedin","fa fa-github","fa fa-sitemap"];
-var nizLinkova=["https://www.linkedin.com/in/bogdan-jankovi%C4%87-53175b115/","https://github.com/bogdanjankovic",""]
+var nizIkona=["fa fa-linkedin","fa fa-github","fa fa-sitemap","fa fa-book"];
+var nizLinkova=["https://www.linkedin.com/in/bogdan-jankovi%C4%87-53175b115/","https://github.com/bogdanjankovic","sitemap.xml","How to play.docx"]
 var i=0;
 while (i<nizIkona.length){
     ispisFooter+=
@@ -341,3 +341,22 @@ footer();
 // PROCESLJATI KOD I ELIMINISATI PONAVLJANJA I NEPOTREBNE STVARI
 //UBACITI UVOD U KVIZ, NEKE OSNOVNE INFORMACIJE O KVIZU, KAO I DUGMICE ZA IZBOR GEJM MODA, MOZDA I DA SE PRIKAZE TRENUTNA RANG LISTA
 //DOBRA FORMA SA REGULARNIM IZRAZIMA
+
+function pobeda(){
+    footer();
+    let noviProzor=`<div class="youWin bg-dark">
+    <div class='col-md-12 bg-'>
+                <header><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
+                <div class="jumbotron ">
+  <div class="container">
+    <h1>Congratulations, you beat the game!</h1>
+    <p class="lead">You have earned all of the badges, that's awesome! Your score was: ${score} </p>
+    </div>
+</div>
+	</div>
+    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Try again" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="Apply for High Score" onclick="highScore();"></div>
+    </div>
+    <div id="ispisHS"></div>
+    `
+    document.getElementById("container").innerHTML=noviProzor;
+}
