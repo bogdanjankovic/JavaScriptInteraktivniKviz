@@ -77,17 +77,23 @@ var beleska=``;
 function uspehTreker(){
     var trekerUspeha=document.getElementById("completedRounds");
      //beleska+=`<span class="${bedzevi[brojRundi-1]}">Congratulations! You've earned a master of ${kategorija[brojRundi-1]} badge!</span>`;
-     beleska+=`
-        <div class="col-md-3 mx-2 media alert alert-${boja[brojRundi-1]}">
-            <i class="${bedzevi[brojRundi-1]}" aria-hidden="true"></i>
-            <div class="m-2 media-body">
-            <h5 class="mt-0 "> ${kategorija[brojRundi-1]}</h5>
-            Round ${brojRundi} complete: Congratulations! You've earned a master of ${kategorija[brojRundi-1]} badge!
-            </div>
-        </div>
+     beleska+=`<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header alert alert-${boja[brojRundi-1]}">
+                         <i class="${bedzevi[brojRundi-1]}" aria-hidden="true"></i>
+                        <strong class="mr-auto">${kategorija[brojRundi-1]}</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                            Round ${brojRundi} complete: Congratulations! You've earned a master of ${kategorija[brojRundi-1]} badge!
+                    </div>
+                </div>
         `
-        if(brojRundi%3==0) {trekerUspeha.classList.add("row")};
-     beleska+="</br>"
+        $(document).ready(function(){
+            $('.toast').toast({delay: 5000});
+            $('.toast').toast('show');
+          });
      trekerUspeha.innerHTML=beleska; 
 }
 function novaRunda(){
@@ -229,20 +235,26 @@ footer();
         ispis+=`<form onsubmit="leaderBoard()">
         <div class="form-group">
           <label for="">Your Nickname: </label>
-          <input type="text" class="form-control" id="nickname">
-          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control btn btn-primary" id="submit"><p></p>
+          <input type="text" onfocus='regEx()' class="form-control" id="nickname"><p></p>
+          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control btn btn-primary" id="submit">
         </div>
     </form>`
         var ispisKrajnji=document.getElementById("ispisHS");
         ispisKrajnji.innerHTML=ispis;
-        var polje=document.querySelector("#nickname"); 
-        var regExNickname=/^[a-zA-Z0-9-._]{2,64}$/g;
-        if(!regExNickname.test(polje.value)){
-                polje.nextElementSibling.innerHTML="Please enter atleast two characters, you can also use dots, underscores, digits, whatever you like!";
-      }
   }
   // regEx
- 
+ function regEx(){
+    var polje=document.getElementById("nickname");
+    var regExNickname=/[a-zA-Z][a-zA-Z0-9-_]{3,32}/gi;
+    if(!regExNickname.test(polje.value)){
+            polje.nextElementSibling.innerHTML="Please enter atleast two characters, you can also use dots, underscores, digits, whatever you like!";
+            document.getElementById("submit").setAttribute("disabled",true);
+  }
+    else if(regExNickname.test(polje.value)){
+        polje.nextElementSibling.innerHTML="";
+        submitBtn.disabled=false;
+    }
+ }
   var cestitka='';
   function leaderBoard(){
       console.log(zapis.value);
@@ -308,3 +320,12 @@ footer();
         trigger : 'hover'
     });
 });
+ 
+
+// DEFINISATI FUNKCIJU POBEDA
+// AKO IMA VREMENA, UBACITI GEJM MOD SA TAJMEROM
+// ODRADITI DOKUMENTACIJU
+//SITEMAP
+// PROCESLJATI KOD I ELIMINISATI PONAVLJANJA I NEPOTREBNE STVARI
+//UBACITI UVOD U KVIZ, NEKE OSNOVNE INFORMACIJE O KVIZU, KAO I DUGMICE ZA IZBOR GEJM MODA, MOZDA I DA SE PRIKAZE TRENUTNA RANG LISTA
+//DOBRA FORMA SA REGULARNIM IZRAZIMA
