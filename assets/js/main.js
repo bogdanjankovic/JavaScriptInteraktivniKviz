@@ -211,7 +211,7 @@ function footer(){
     var footer=document.getElementById("footer");
 var ispisFooter=`<ul class="nav">`;
 var nizIkona=["fa fa-linkedin","fa fa-github","fa fa-sitemap"];
-var nizLinkova=["","",""]
+var nizLinkova=["https://www.linkedin.com/in/bogdan-jankovi%C4%87-53175b115/","https://github.com/bogdanjankovic",""]
 var i=0;
 while (i<nizIkona.length){
     ispisFooter+=
@@ -248,16 +248,13 @@ footer();
     var regExNickname=/[a-zA-Z]{3,32}/gi;
     if(!regExNickname.test(vrednost)){
             polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please enter atleast 3 characters that aren't digits, you can also use dots and underscores to further customize your nick!</span>";
-            var disableSelection = function(){
-                $("#elementId").prop("disabled", true);    
-            };
+            var disableSelection =document.getElementById("submit")
+            disableSelection.setAttribute("disabled","true");
             polje.classList.add("alert","alert-danger")
   }
     else{
         polje.nextElementSibling.innerHTML="<span class='text text-success'>Looking good!</span>";
-        var enableSelection = function(){
-            $("#elementId").prop("disabled", false);
-        };
+        document.getElementById('submit').disabled = false; 
         polje.classList.remove("alert","alert-danger")
         polje.classList.add("alert","alert-success")
     }
