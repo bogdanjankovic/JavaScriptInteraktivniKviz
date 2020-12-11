@@ -99,6 +99,7 @@ table{
 	margin:0 auto;
 }
 #ispisHS{
+	margin-top:5%;
 	min-height: 40vw;
 	max-height: 200vw;
 	display: flex;
