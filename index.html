@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+  <link rel="stylesheet" href="assets/css/main.css" type="text/css">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 	<link rel="shortcut icon" href="assets/img/favicon-96x96.png" type="image/x-icon">
 	<script src="https://kit.fontawesome.com/cb198d1ce9.js" crossorigin="anonymous"></script>
@@ -14,14 +14,17 @@
 	<title>QuizWizz</title>
 </head>
 <body>
+  <!--CONTAINER-->
     <div id="container"class="container col-md-12 my-4 p-4">
 		<section id="window" class="col-md-12 d-flex flex-wrap p-4">
+      <!--LOGO-->
 			<header class='w-100'>
 				<a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a>
             </header>
         </section>
-        <div class="jumbotron p-4">
-            <h1 class="display-4">Hello, and welcome to <b class="text text-info">QuizWizz</b> !</h1>
+        <!--INTRODUCTION TO THE GAME-->
+        <div class="jumbotron p-4 mb-4">
+            <h1 class="">Hello, and welcome to <b class="text text-info">QuizWizz</b> !</h1>
             <p class="lead">A place where you can test your knowledge of random facts and challenge yourself to the fullest!</p>
             <hr class="my-4">
             <p class="p-2">The rules are simple:</br> There are 9 rounds of 10 questions each, where each round represents a <b class="text text-warning">category</b> .</p>
@@ -29,12 +32,33 @@
             <p class="p-2">If your choice is wrong, you lose, simple as that. But, worry not! For your quest to beat the highscore, you are accompanied with 2<b class="text text-warning"> supporting buttons</b>  that you can use <b class="text text-secondary">each round</b>! </p>
             <div id="letsGo"><a class="btn btn-success btn-lg" href="quiz.html" role="button">Let's get started!</a></div> 
           </div>
-          <section id="author" class="mt-4 p-4">
-
+          <!--AUTHOR -->
+          <section id="author" class="col-sm-12 mt-4 p-4 bg-dark">
+            <article class="naslov">
+              <span class="linija"></span>
+              <h2 class="text-center col-sm-12">-THE MAN- <br/> BEHIND IT ALL </h2>
+              <span class="linija"></span>
+          </article>
+          <div class="row">
+              <div id="author-image" class="col-md-6 p-4 mt-4">
+                  <img src="assets/img/bogdan.jpg" alt="autor">
+              </div>
+              <div class="author-description col-md-6 p-4 mt-4">
+                  <p class="margin-bottom-default">My name is <b class="text-warning">Bogdan Jankovic</b>  and I am a web developer from Serbia.<br><br>
+                      I am passionate and ambitious, I like challenges and I'm constantly trying to improve myself.
+                      I'm currently studying  IT and Web Programming at ICT College in Belgrade.
+                      I am very interested in tehnology, that's why I decided to build a career from it.<br><br>
+                      Check out my portfolio <a class="text-warning"target='_blank' href="https://bogdanjankovic.github.io/portfolio/">here</a>.
+                      </p>
+                  </div>
+              </div>
           </section>
     </div>
+    <!--FOOTER-->
     <footer id="footer" class="bg-dark"></footer>
+    <!--SCRIPTS-->
     <script src="assets/js/functions.js"></script>
     <script src="assets/js/index.js"></script>
 </body>
 </html>
+
