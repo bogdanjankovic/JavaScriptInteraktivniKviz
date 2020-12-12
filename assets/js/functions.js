@@ -8,7 +8,6 @@ function ispisPitanja(){
     {   
         
         while(brojPitanja<=9){
-            console.log("vrednosti i,j redom: "+brojPitanja+" "+brojRundi);
             novoPitanje+=nizPitanja[brojRundi][brojPitanja]+"</h4>"
              return document.getElementById("questions").innerHTML=novoPitanje;
         }
@@ -77,7 +76,6 @@ function novaRunda(){
             if(brojRundi==kategorija.length){
                 pobeda();
             }
-            console.log("Uslo je u novaRunda funkciju");
             var vazeceDugme = document.getElementsByClassName('btn-warning');
             while (vazeceDugme.length > 0) {
                 vazeceDugme[0].classList.remove('btn-warning');
@@ -98,19 +96,13 @@ function progresBar(){
 }
 //Funkcija za proveru tacnosti odgovora koriscenjem pomocnog niza u kome se skladiste tacni odgovori. 
 function proveraTacnosti(clicked){
-    console.log(clicked);
-    console.log(typeof(clicked));
     for( moguciOdgovori;moguciOdgovori<nizProvere.length;moguciOdgovori++){
         if(parseInt(clicked)==nizProvere[moguciOdgovori]){
-            console.log("usao u if");
             var tacanOdgovor=document.getElementById(clicked);
             tacanOdgovor.classList.add("btn-success");
-            console.log("TACAN ODGOVOR");
             var zbir=(parseInt(nizProvere[moguciOdgovori]+1))*10;
             score+=zbir;
-            console.log(score);
             zbirTacnih+=10;
-            
             progresBar();
             let zeleniBar=document.getElementById("progress");
             zeleniBar.classList.add('bg-success');
@@ -120,7 +112,6 @@ function proveraTacnosti(clicked){
         else{
             var netacanOdgovor=document.getElementById(clicked);
             netacanOdgovor.classList.add("btn-danger");
-            console.log("NETACAN ODGOVOR");
             zbirTacnih-=10;
             progresBar();
             let crveniBar=document.getElementById("progress");
@@ -201,7 +192,7 @@ function highScore(){
       <div class="form-group">
         <label for="">Your Nickname: </label>
         <input type="text" class="form-control" onBlur='regEx(this.value,this.id)' id="Nickname"><p></p>
-        <input type="submit"  onClick="zapis=document.querySelector('#Nickname');" class="form-control btn btn-primary" id="submit">
+        <input type="submit"  onClick="zapis=document.querySelector('#Nickname');localStorage.setItem('nadimak',zapis.value)" class="form-control btn btn-primary" id="submit">
       </div>
   </form>`
       var ispisKrajnji=document.getElementById("ispisHS");
@@ -210,11 +201,9 @@ function highScore(){
 // Funkcija za proveru korektnosti regularnih izraza
 function regEx(vrednost,id){
     var getEl=id;
-    console.log(getEl);
     let polje=document.getElementById(getEl);
         if(id=="Email"){
             let regex=regExEmail;
-            console.log("usao u EMAIL");
             if(regex.test(vrednost)){
                polje.nextElementSibling.innerHTML='';
                document.getElementById('submit').disabled = false; 
@@ -230,7 +219,6 @@ function regEx(vrednost,id){
         }
         else if(id=="FirstName"){
            let regex=regExFirstName;
-           console.log("usao u FIRSTNAME");
            if(regex.test(vrednost)){
                polje.nextElementSibling.innerHTML='';
               document.getElementById('submit').disabled = false; 
@@ -246,7 +234,6 @@ function regEx(vrednost,id){
        }
        else if(id=="LastName"){
            let regex=regExLastName;
-           console.log("usao u LASTNAME");
            if(regex.test(vrednost)){
                polje.nextElementSibling.innerHTML='';
               document.getElementById('submit').disabled = false; 
@@ -261,7 +248,6 @@ function regEx(vrednost,id){
            }
        }
        else if(id=="Nickname"){
-           console.log("usao u NICKNAME");
            let regex=regExNickname;
            if(regex.test(vrednost)){
                polje.nextElementSibling.innerHTML='';
@@ -277,7 +263,6 @@ function regEx(vrednost,id){
            }
        }
        else if(id=="Money"){
-           console.log("usao u Money");
            let regex=regExMoney;
            if(regex.test(vrednost)){
                polje.nextElementSibling.innerHTML='';
@@ -296,7 +281,7 @@ function regEx(vrednost,id){
     }
     //Otvara rang listu i upisuje ime korisnika u tabelu u zavisnosti od broja bodova
     function leaderBoard(){
-        console.log(zapis.value);
+        if(localStorage.getItem('nadimak')===null){
         imeKorisnika=zapis.value;
         var ispisNovi=document.getElementById("container");
       var nizImena=["Bogdan","Dragana","Jelena","Goran","Tara","Stefan","Mila"];
@@ -306,8 +291,6 @@ function regEx(vrednost,id){
       var z=nizImena.length;
         for( ;x<nizImena.length;x++){
               if(score<parseInt(nizPoena[x])){
-                  console.log(x);
-                  console.log(score);
                   continue;
               }
               else{
@@ -347,7 +330,59 @@ function regEx(vrednost,id){
           $(document).ready(function(){
           $("tr:even").css("background-color", "primary");
           });
-      }
+        }
+        else{
+            imeKorisnika=localStorage.getItem('nadimak');
+            var ispisNovi=document.getElementById("container");
+      var nizImena=["Bogdan","Dragana","Jelena","Goran","Tara","Stefan","Mila"];
+      var nizPoena=["450","220","210","150","140","110","90"];
+      var x=0;
+      var brojac=0;
+      var z=nizImena.length;
+        for( ;x<nizImena.length;x++){
+              if(score<parseInt(nizPoena[x])){
+                  continue;
+              }
+              else{
+                  nizImena.splice(x,0,imeKorisnika);
+                  nizPoena.splice(x,0,score);
+                  brojac++;
+                  break;
+              }
+              
+            }
+          if(!brojac){
+              nizImena.push(imeKorisnika);
+              nizPoena.push(score);
+          }
+          var leaderBoard=`<div class="gameOver bg-dark">
+          <div class='col-md-12'>
+                      <header id="highScoreLogo"><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
+        </div>
+          </div>
+          <table class="table col-md-6 bg-primary"><tbody>
+          `;
+          for( var y=0;y<nizImena.length;y++){
+              
+           leaderBoard+=`
+           
+           <tr><td>${y+1}</td><td>${nizImena[y]}</td><td>${nizPoena[y]}</td></tr>
+           `
+          }
+          leaderBoard+=`</tbody></table>
+          <div id="gameOverDugmad" class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Go Back" onclick='pobeda();';"></div>
+          </div>`
+          ispisNovi.innerHTML=leaderBoard;
+          //primena jQuery-a za bojenje parnih i neparnih elemenata redova tabela
+          $(document).ready(function(){
+            $("tr:odd").css("background-color", "indigo");
+          });
+          $(document).ready(function(){
+          $("tr:even").css("background-color", "primary");
+          });
+        }
+        }
+        
 //Aktivira sve popovere na stranici
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover({
@@ -369,7 +404,7 @@ function pobeda(){
     </div>
 </div>
 	</div>
-    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Check Leaderboard" onclick="highScore();"> <input id="pocniPonovo" class="dugmici btn  btn-warning m-2 " type="button" value="Leave a Donation" onclick="forma();"></div>
+    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Check Leaderboard" onclick="leaderBoard();"> <input id="pocniPonovo" class="dugmici btn  btn-warning m-2 " type="button" value="Leave a Donation" onclick="forma();"></div>
     </div>
     <div id="ispisHS"></div>
     `

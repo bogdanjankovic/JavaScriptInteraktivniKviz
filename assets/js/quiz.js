@@ -22,6 +22,8 @@ var beleska=``;  //inicijalna vrednost u koju se kasnije upisuju rezultati niza 
 var score=0; //pocetna vrednost broja poena korisnika, koja se inkrementira kasnije i prikazuje na kraju igre
 var imeKorisnika=''; //inicijalizovan string koji treba sadrzi nadimak korisnika
 var zapis; // deklarisana promenljiva koja sluzi za selektovanje id-a iz mini-forme
+var nadimak=imeKorisnika;
+console.log(nadimak);
 
 
 
