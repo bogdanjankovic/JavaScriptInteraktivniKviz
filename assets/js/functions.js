@@ -115,7 +115,7 @@ function proveraTacnosti(clicked){
             let zeleniBar=document.getElementById("progress");
             zeleniBar.classList.add('bg-success');
             document.getElementById("answers").innerHTML=(`Difficulty modifier: X${nizProvere[moguciOdgovori]+1}    +`+zbir);
-            return setTimeout(function(){  sledecePitanje();}, 1000);
+            return setTimeout(function(){  sledecePitanje(); }, 500);
         }
         else{
             var netacanOdgovor=document.getElementById(clicked);
@@ -180,7 +180,7 @@ function footer(){
     var footer=document.getElementById("footer");
 var ispisFooter=`<ul class="nav">`;
 var nizIkona=["fa fa-linkedin","fa fa-github","fa fa-sitemap","fa fa-book"];
-var nizLinkova=["https://www.linkedin.com/in/bogdan-jankovi%C4%87-53175b115/","https://github.com/bogdanjankovic","sitemap.xml","How to play.docx"]
+var nizLinkova=["https://www.linkedin.com/in/bogdan-jankovi%C4%87-53175b115/","https://github.com/bogdanjankovic","sitemap.xml","QuizWizz.pdf"]
 var i=0;
 while (i<nizIkona.length){
     ispisFooter+=
