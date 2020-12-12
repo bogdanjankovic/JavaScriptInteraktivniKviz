@@ -28,7 +28,7 @@
 	 min-height: 0vh;
  }
  .jumbotron .container p{
-	font-size: 3vw;
+	font-size: 2vw;
  }
  .jumbotron .container h1{
 	font-size: 5vw;
@@ -53,7 +53,7 @@
 	justify-content: space-evenly;
 	min-height:10vw;
 }
-.gameOver input{
+.gameOver input,.youWin input{
 	
 	min-width:50vw;
 	margin: 10vw 10vw;
@@ -89,7 +89,7 @@
 .container h1 .display-3{
 	font-size:2.34375rem;
 }
-form{
+#ispisHS form{
 	padding:2vw;
 	margin-top:2vw;
 	width:50%;
@@ -101,11 +101,13 @@ table{
 #ispisHS{
 	margin-top:5%;
 	min-height: 40vw;
-	max-height: 200vw;
 	display: flex;
 	justify-content: center;
 }
 #gameOverDugmad{
 	display: flex;
 	justify-content: center;
+}
+span{
+	font-size:4vw;
 }

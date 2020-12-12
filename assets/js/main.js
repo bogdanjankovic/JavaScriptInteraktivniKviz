@@ -7,7 +7,11 @@ if(/Android [4-6]/.test(navigator.appVersion)) {
        }
     })
  }
-
+    var regExLastName=/[a-zA-Z-'`]+[ a-zA-Z-'`]/g;
+    var regExFirstName=/[a-z]{1,10}/g;
+    var regExEmail=/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi;
+    var regExNickname=/[a-zA-Z]{3,32}/gi;
+    var regExMoney=/[0-9]{3,8}/gi;
 // Implementirati izbor modova!
 
 // Funkcija za ispisivanje pitanja
@@ -243,31 +247,100 @@ footer();
         ispis+=`<form onsubmit="leaderBoard()">
         <div class="form-group">
           <label for="">Your Nickname: </label>
-          <input type="text" class="form-control" onBlur='regEx(this.value)' id="nickname"><p></p>
-          <input type="submit"  onClick="zapis=document.querySelector('#nickname');" class="form-control btn btn-primary" id="submit">
+          <input type="text" class="form-control" onBlur='regEx(this.value,this.id)' id="Nickname"><p></p>
+          <input type="submit"  onClick="zapis=document.querySelector('#Nickname');" class="form-control btn btn-primary" id="submit">
         </div>
     </form>`
         var ispisKrajnji=document.getElementById("ispisHS");
         ispisKrajnji.innerHTML=ispis;
   }
   // regEx
- function regEx(vrednost){
-     var polje=document.getElementById("nickname");
-    var regExNickname=/[a-zA-Z]{3,32}/gi;
-    if(!regExNickname.test(vrednost)){
-            polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please enter atleast 3 non-digit characters :)</span>";
-            var disableSelection =document.getElementById("submit")
-            disableSelection.setAttribute("disabled","true");
-            polje.classList.add("alert","alert-danger")
-  }
-    else{
-        polje.nextElementSibling.innerHTML="<span class='text text-success'>Looking good!</span>";
-        document.getElementById('submit').disabled = false; 
-        polje.classList.remove("alert","alert-danger")
-        polje.classList.add("alert","alert-success")
-    }
- }
-  var cestitka='';
+ function regEx(vrednost,id){
+     var getEl=id;
+     console.log(getEl);
+     let polje=document.getElementById(getEl);
+         if(id=="Email"){
+             let regex=regExEmail;
+             console.log("usao u EMAIL");
+             if(regex.test(vrednost)){
+                polje.nextElementSibling.innerHTML='';
+                document.getElementById('submit').disabled = false; 
+                 polje.classList.remove("alert","alert-danger")
+                polje.classList.add("alert","alert-success")
+             }
+             else{
+                polje.nextElementSibling.innerHTML="<span class='text text-warning'>Email format is: text@mail.domain!</span>";
+                var disableSelection =document.getElementById("submit")
+                disableSelection.setAttribute("disabled","true");
+                polje.classList.add("alert","alert-danger")
+             }
+         }
+         else if(id=="FirstName"){
+            let regex=regExFirstName;
+            console.log("usao u FIRSTNAME");
+            if(regex.test(vrednost)){
+                polje.nextElementSibling.innerHTML='';
+               document.getElementById('submit').disabled = false; 
+                polje.classList.remove("alert","alert-danger")
+               polje.classList.add("alert","alert-success")
+            }
+            else{
+               polje.nextElementSibling.innerHTML="<span class='text text-warning'>Unless you're an alien, write characters only.</span>";
+               var disableSelection =document.getElementById("submit")
+               disableSelection.setAttribute("disabled","true");
+               polje.classList.add("alert","alert-danger")
+            }
+        }
+        else if(id=="LastName"){
+            let regex=regExLastName;
+            console.log("usao u LASTNAME");
+            if(regex.test(vrednost)){
+                polje.nextElementSibling.innerHTML='';
+               document.getElementById('submit').disabled = false; 
+                polje.classList.remove("alert","alert-danger")
+               polje.classList.add("alert","alert-success")
+            }
+            else{
+               polje.nextElementSibling.innerHTML="<span class='text text-warning'>Unless you're an alien, write characters only.</span>";
+               var disableSelection =document.getElementById("submit")
+               disableSelection.setAttribute("disabled","true");
+               polje.classList.add("alert","alert-danger")
+            }
+        }
+        else if(id=="Nickname"){
+            console.log("usao u NICKNAME");
+            let regex=regExNickname;
+            if(regex.test(vrednost)){
+                polje.nextElementSibling.innerHTML='';
+               document.getElementById('submit').disabled = false; 
+                polje.classList.remove("alert","alert-danger")
+               polje.classList.add("alert","alert-success")
+            }
+            else{
+               polje.nextElementSibling.innerHTML="<span class='text text-warning'>Write atleast 3 characters, no digits allowed!</span>";
+               var disableSelection =document.getElementById("submit")
+               disableSelection.setAttribute("disabled","true");
+               polje.classList.add("alert","alert-danger")
+            }
+        }
+        else if(id=="Money"){
+            console.log("usao u Money");
+            let regex=regExMoney;
+            if(regex.test(vrednost)){
+                polje.nextElementSibling.innerHTML='';
+               document.getElementById('submit').disabled = false; 
+                polje.classList.remove("alert","alert-danger")
+               polje.classList.add("alert","alert-success")
+            }
+            else{
+               polje.nextElementSibling.innerHTML="<span class='text text-warning'>Please insert a value of atleast 100 $</span>";
+               var disableSelection =document.getElementById("submit")
+               disableSelection.setAttribute("disabled","true");
+               polje.classList.add("alert","alert-danger")
+            }
+        }
+        
+     }
   function leaderBoard(){
       console.log(zapis.value);
       imeKorisnika=zapis.value;
@@ -284,9 +357,6 @@ footer();
                 continue;
             }
             else{
-                if(score>parseInt(nizPoena[0])){
-                    cestitka="Congratulations, you have set a new High Score, amazing! ";
-                }
                 nizImena.splice(x,0,imeKorisnika);
                 nizPoena.splice(x,0,score);
                 brojac++;
@@ -314,7 +384,7 @@ footer();
        `
       }
       leaderBoard+=`</tbody></table>
-      <div id="gameOverDugmad" class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Contact the Author" onclick='';"></div>
+      <div id="gameOverDugmad" class=' col-sm-12'><input id="pocniPonovo" class=" btn  btn-success m-2 " type="button" value="New Game" onclick="newGame();"> <input id="rangListaUpis" class="btn btn-warning btn-outline-primary m-2 " type="button" value="Go Back" onclick='pobeda();';"></div>
       </div>`
       ispisNovi.innerHTML=leaderBoard;
       //primena jQuery-a za bojenje parnih i neparnih elemenata redova tabela
@@ -347,16 +417,61 @@ function pobeda(){
     let noviProzor=`<div class="youWin bg-dark">
     <div class='col-md-12 bg-'>
                 <header><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></header>
-                <div class="jumbotron ">
-  <div class="container">
-    <h1>Congratulations, you beat the game!</h1>
-    <p class="lead">You have earned all of the badges, that's awesome! Your score was: ${score} </p>
+                <div class="jumbotron alert alert-secondary ">
+  <div class="container alert alert-secondary">
+    <h1>The game is over!</h1>
+    <p class="lead"> Your score was: ${score} </br>
+    Stay put! There will be more updates in the future, with additional features. You obviously liked this quiz if you wound up on this  screen! If you'd like to help the author cover his basic expenses and fund his future projects, you can leave a donation below. Many thanks! </p>
     </div>
 </div>
 	</div>
-    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Try again" onclick="newGame();"> <input id="rangListaUpis" class="dugmici btn btn-warning btn-outline-primary m-2 " type="button" value="Apply for High Score" onclick="highScore();"></div>
+    <div class='drzacDugmica col-sm-12'><input id="pocniPonovo" class="dugmici btn  btn-success m-2 " type="button" value="Check Leaderboard" onclick="highScore();"> <input id="pocniPonovo" class="dugmici btn  btn-warning m-2 " type="button" value="Leave a Donation" onclick="forma();"></div>
     </div>
     <div id="ispisHS"></div>
     `
     document.getElementById("container").innerHTML=noviProzor;
+}
+function receipt(){
+    var rezultatForme=document.getElementById("submit");
+    rezultatForme.nextElementSibling.innerHTML="A receipt has been sent to your Paypal account, please confirm it. Thank you!</br> <input type='button'class='btn btn-success' value='Go Back' onClick='pobeda();'/>";
+    
+}
+function forma(){
+    var formular=`
+    <header><div><a href="index.html"><img class="rounded mx-auto d-block" src="assets/img/logo.png" alt="logo"></a></div></header>
+    <form onsubmit="setTimeout(function(){  receipt();}, 2000);return false;">
+    <div class="my-4">
+    <h1>Make a donation via Paypal</h1>
+    <form>
+    <div class="row my-4">
+      <div class="col">
+        <input type="text" class="form-control" onBlur="regEx(this.value,this.id);" placeholder="First name" id="FirstName" required><p></p>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" onBlur="regEx(this.value,this.id);" placeholder="Last name" id="LastName" required><p></p>
+      </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-sm-6">
+          <input type="email" class="form-control" onBlur="regEx(this.value,this.id);" placeholder="firstname@mail.com" id="Email" required><p></p>
+        </div>
+    </div>
+        <div class="row my-4">
+            <div class="col-sm-5">
+              <input type="number" class="form-control" onBlur="regEx(this.value,this.id);" placeholder="Choose amount in $" id="Money" required><p></p>
+            </div>
+            <div class="col-sm-6">
+                <input class="btn btn-success"type="submit"  value="Donate" id="submit"><p></p>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="p-4">
+              <textarea class="w-80" placeholder="Say something to the author" id="Text" cols="25" rows="10"></textarea>
+            </div>
+        </div>
+
+  </form>
+</div>`
+var ispisForme=document.getElementById("container");
+    ispisForme.innerHTML=formular;
 }
